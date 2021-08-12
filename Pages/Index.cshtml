@@ -1,0 +1,22 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>List from Database</h1>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <select asp-for="UsersList" asp-items="@Model.UsersList" class="form-control"></select>
+        </div>
+    </div>
+</div>
+<h1>List from Enum</h1>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <select asp-for="Utenti" asp-items="Html.GetEnumSelectList<Utenti>()" class="form-control"></select>
+        </div>
+    </div>
+</div>
