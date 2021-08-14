@@ -8,10 +8,16 @@
 <div class="row">
     <div class="col-4">
         <div class="form-group">
-            <select asp-for="UsersList" asp-items="@Model.UsersList" class="form-control"></select>
+            <select class="form-control">
+                @foreach (var item in @Model.UsersList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
         </div>
     </div>
 </div>
+<hr>
 <h1>List from Enum</h1>
 <div class="row">
     <div class="col-4">

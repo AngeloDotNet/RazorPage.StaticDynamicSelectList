@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace SelectListMvc_Load_Static_Dynamic.Models.Entities
 {
     public class User

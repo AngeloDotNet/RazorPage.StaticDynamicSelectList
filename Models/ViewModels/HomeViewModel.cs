@@ -10,13 +10,15 @@ namespace SelectListMvc_Load_Static_Dynamic.Models.ViewModels
         public int Id { get; private set; }
         public string Cognome { get; private set; }
         public string Nome { get; private set; }
+        public string Nominativo { get; private set; }
 
         public static HomeViewModel FromEntity(User user)
         {
             return new HomeViewModel {
                 Id = user.Id,
                 Cognome = user.Cognome,   
-                Nome = user.Nome
+                Nome = user.Nome,
+                Nominativo = string.Concat(user.Cognome + " " + user.Nome)
             };
         }
     }
