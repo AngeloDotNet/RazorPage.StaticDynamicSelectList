@@ -11,7 +11,14 @@
             <select class="form-control">
                 @foreach (var item in @Model.UsersList)
                 {
-                    <option value="@item.Value">@item.Text</option>
+                    @if (item.Text.Contains("Neri"))
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
                 }
             </select>
         </div>
