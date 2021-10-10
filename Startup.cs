@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SelectListMvc_Load_Static_Dynamic.Models.Services.Application;
 using SelectListMvc_Load_Static_Dynamic.Models.Services.Infrastructure;
 
 namespace SelectListMvc_Load_Static_Dynamic
@@ -21,6 +22,8 @@ namespace SelectListMvc_Load_Static_Dynamic
         {
             services.AddDbContext<DemoDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
+
+            services.AddTransient<IUserService, EfCoreUserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
