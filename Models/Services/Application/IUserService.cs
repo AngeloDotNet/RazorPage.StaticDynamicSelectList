@@ -7,6 +7,6 @@ namespace SelectListMvc_Load_Static_Dynamic.Models.Services.Application
     public interface IUserService
     {
         Task<List<UserViewModel>> GetUsersFromDatabase();
-        Task<ListViewModel<UserViewModel>> GetListaUtenti();
+        Task<ListViewModel<UserViewModel>> GetListaUsers(int id);
     }
 }

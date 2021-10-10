@@ -43,5 +43,23 @@ namespace SelectListMvc_Load_Static_Dynamic.Models.Services.Application
 
             return result;
         }
+
+        public async Task<ListViewModel<UserViewModel>> GetListaUsers(int id)
+        {
+            IQueryable<User> queryLinq = dbContext.Utenti
+                .AsNoTracking();
+            
+            List<UserViewModel> listUsers = await queryLinq
+                .Where(user => user.Id == id)
+                .Select(user => UserViewModel.FromEntity(user))
+                .ToListAsync();
+
+            ListViewModel<UserViewModel> result = new()
+            {
+                Results = listUsers
+            };
+
+            return result;
+        }
     }
 }
