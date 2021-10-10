@@ -1,10 +1,9 @@
 @page
 @model IndexModel
-
 @{
     ViewData["Title"] = "Home Page";
 }
-<h1>List from Database</h1>
+<h1>List 1 from Database</h1>
 <div class="row">
     <div class="col-4">
         <div class="form-group">
@@ -22,6 +21,33 @@
                 }
             </select>
         </div>
+    </div>
+</div>
+<hr>
+<h1>List 2 from Database</h1>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <select class="form-control">
+                @foreach (var item in @Model.PeopleList)
+                {
+                    @if (item.Text.Contains("Neri"))
+                    {
+                        <option value="@item.Value" selected>@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-4">
+        @foreach (UserViewModel utente in @Model.Users.Results)
+        {
+            <p>Nominativo: @utente.Cognome @utente.Nome</p>
+        }
     </div>
 </div>
 <hr>
