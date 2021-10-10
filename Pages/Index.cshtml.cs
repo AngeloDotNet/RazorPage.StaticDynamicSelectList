@@ -18,6 +18,9 @@ namespace SelectListMvc_Load_Static_Dynamic.Pages
             this.dbContext = dbContext;
         }
 
+        [BindProperty]
+        public int manager { get; set; }
+
         public Utenti Utenti { get; set; }
 
         public SelectList UsersList { get; set; }
@@ -27,17 +30,30 @@ namespace SelectListMvc_Load_Static_Dynamic.Pages
 
         public async Task<IActionResult> OnGetAsync([FromServices] IUserService userService)
         {
-            List<UserViewModel> listUsers = await userService.GetUsersFromDatabase();
+            await LoadDataAsync(userService);
 
+            Users = await userService.GetListaUsers(0);
+            
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int manager, [FromServices] IUserService userService)
+        {
+            await LoadDataAsync(userService);
+
+            Users = await userService.GetListaUsers(manager);
+            
+            return Page();
+        }
+
+        public async Task LoadDataAsync(IUserService userService)
+        {
+            List<UserViewModel> listUsers = await userService.GetUsersFromDatabase();
             List<UserViewModel> listPeople = await userService.GetUsersFromDatabase();
 
             UsersList = new SelectList(listUsers, "Id", "Nominativo");
 
             PeopleList = new SelectList(listPeople, "Id", "Nominativo");
-
-            Users = await userService.GetListaUtenti();
-            
-            return Page();
         }
     }
 }
