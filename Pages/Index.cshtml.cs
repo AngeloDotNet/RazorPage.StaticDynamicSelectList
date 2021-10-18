@@ -49,7 +49,7 @@ namespace SelectListMvc_Load_Static_Dynamic.Pages
         public async Task LoadDataAsync(IUserService userService)
         {
             List<UserViewModel> listUsers = await userService.GetUsersFromDatabase();
-            List<UserViewModel> listPeople = await userService.GetUsersFromDatabase();
+            List<UserViewModel> listPeople = await userService.GetPeopleFromDatabase();
 
             UsersList = new SelectList(listUsers, "Id", "Nominativo");
 
